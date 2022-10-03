@@ -1,0 +1,9 @@
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\bin\Debug\negocio.dll
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\bin\Debug\negocio.pdb
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\bin\Debug\Dominio.dll
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\bin\Debug\Dominio.pdb
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\obj\Debug\negocio.csproj.AssemblyReference.cache
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\obj\Debug\negocio.csproj.CoreCompileInputs.cache
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\obj\Debug\negocio.csproj.CopyComplete
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\obj\Debug\negocio.dll
+C:\Users\rodri\Desktop\curso maxi 2\pokemon-sql\negocio\obj\Debug\negocio.pdb
