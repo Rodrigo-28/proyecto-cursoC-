@@ -70,7 +70,66 @@ namespace negocio
 
 
         }
-            public void agregar(Pokemon nuevo)
+
+
+        public List<Pokemon> listarConSp()
+        {
+            List<Pokemon> lista = new List<Pokemon>();
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                // string consulta = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id from POKEMONS P, ELEMENTOS E,ELEMENTOS D WHERE E.ID = P.IdTipo AND D.Id = P.IdDebilidad And p.activo = 1";
+
+
+
+                //datos.setearConsulta(consulta);
+                datos.setearProcedimiento("storeListar");
+
+                datos.ejecutarLectura();
+                while (datos.Lector.Read())
+
+                {
+                    Pokemon aux = new Pokemon();
+
+
+                    aux.Id = (int)datos.Lector["Id"];
+                    aux.Numero = (int)datos.Lector["Numero"];
+                    aux.Nombre = (string)datos.Lector["Nombre"];
+                    aux.Descripcion = (string)datos.Lector["descripcion"];
+
+
+                    if (!(datos.Lector["UrlImagen"] is DBNull))
+                        aux.urlImagen = (string)datos.Lector["UrlImagen"];
+
+
+
+                    aux.Tipo = new Elemento();
+                    aux.Tipo.Id = (int)datos.Lector["IdTipo"];
+                    aux.Tipo.Descripcion = (string)datos.Lector["TIPO"].ToString();
+                    aux.Debilidad = new Elemento();
+                    aux.Debilidad.Id = (int)datos.Lector["IdDebilidad"];
+                    aux.Debilidad.Descripcion = (string)datos.Lector["DEBILIDAD"].ToString();
+
+                    lista.Add(aux);
+
+
+                }
+
+
+
+                return lista;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+
+
+        }
+
+
+        public void agregar(Pokemon nuevo)
             {
                 AccesoDatos datos = new AccesoDatos();
              
@@ -165,14 +224,14 @@ namespace negocio
             try
             {
                 string consulta = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id from POKEMONS P, ELEMENTOS E,ELEMENTOS D WHERE E.ID = P.IdTipo AND D.Id = P.IdDebilidad And p.activo = 1 And ";
-             
-                if(campo == "Numero")
+
+                if (campo == "Numero")
                 {
                     if (filtro == "")
                     {
                         return lista;
                     }
-                       
+
                     switch (criterio)
                     {
                         case "Mayor a":
@@ -186,7 +245,8 @@ namespace negocio
                             consulta += "Numero = " + filtro;
                             break;
                     }
-                }else if(campo=="Nombre")
+                }
+                else if (campo == "Nombre")
                 {
                     switch (criterio)
                     {
@@ -217,7 +277,7 @@ namespace negocio
                             consulta += $"P.descripcion like '%{filtro}%'";
                             break;
                     }
-                    
+
                 }
 
                 datos.setearConsulta(consulta);
@@ -227,18 +287,18 @@ namespace negocio
                 {
                     Pokemon aux = new Pokemon();
 
-                  
+
                     aux.Id = (int)datos.Lector["Id"];
                     aux.Numero = (int)datos.Lector["Numero"];
                     aux.Nombre = (string)datos.Lector["Nombre"];
                     aux.Descripcion = (string)datos.Lector["descripcion"];
 
-                  
+
                     if (!(datos.Lector["UrlImagen"] is DBNull))
                         aux.urlImagen = (string)datos.Lector["UrlImagen"];
 
 
-                   
+
                     aux.Tipo = new Elemento();
                     aux.Tipo.Id = (int)datos.Lector["IdTipo"];
                     aux.Tipo.Descripcion = (string)datos.Lector["TIPO"].ToString();
@@ -261,9 +321,10 @@ namespace negocio
                 throw;
             }
 
-         
+
         }
-       
+
     }
 
 }
+
