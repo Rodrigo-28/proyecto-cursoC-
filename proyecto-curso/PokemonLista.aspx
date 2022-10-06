@@ -15,9 +15,7 @@
             <asp:BoundField HeaderText="Tipo" DataField="Tipo.descripcion" />
             <asp:BoundField HeaderText="Debilidad" DataField="Debilidad.descripcion" />
 
-                        <asp:BoundField HeaderText="Debilidad" DataField="Debilidad.descripcion" />
 
-                                    <asp:BoundField HeaderText="Debilidad" DataField="Debilidad.descripcion" />
 
 
 

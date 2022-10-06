@@ -38,9 +38,6 @@ namespace negocio
                 datos.cerrarConexion();
             }
         }
-        public void hola()
-        {
-
-        }
+     
     }
 }
