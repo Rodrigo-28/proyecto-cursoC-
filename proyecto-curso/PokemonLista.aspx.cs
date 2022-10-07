@@ -16,5 +16,21 @@ namespace proyecto_curso
             dgvpokemon.DataSource = servicie.listarConSp();
             dgvpokemon.DataBind();
         }
+
+        protected void dgvpokemon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string id = dgvpokemon.SelectedDataKey.Value.ToString();
+            Response.Redirect("FormularioPokemon.aspx?id=" + id);
+
+        }
+
+    
+
+        protected void dgvpokemon_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            dgvpokemon.PageIndex = e.NewPageIndex;
+            dgvpokemon.DataBind();
+
+        }
     }
 }
