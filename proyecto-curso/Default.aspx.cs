@@ -12,6 +12,7 @@ namespace proyecto_curso
     public partial class Default : System.Web.UI.Page
     {
         public List<Pokemon> ListaPokemon { get; set; }
+        public Pokemon pokemon { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             PokemonService servicio = new PokemonService();
@@ -23,12 +24,20 @@ namespace proyecto_curso
                 repRepetidor.DataBind();
 
             }
+            if(Session["listaPokemon"] == null)
+            {
+                PokemonService aux = new PokemonService();
+                Session.Add("listaPokemon", aux.listarConSp());
+            }
 
         }
 
         protected void btnEjemplo_Click(object sender, EventArgs e)
         {
-            string valor = ((Button)sender).CommandArgument;
+            int valor = int.Parse(((Button)sender).CommandArgument);
+            List<Pokemon> aux = new List<Pokemon>();
+            //aux= ListaPokemon.Find(x => x.Id == valor);
+
         }
     }
 }
