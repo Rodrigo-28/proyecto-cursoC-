@@ -20,7 +20,7 @@ namespace negocio
 
             try
             {
-               
+
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
                 comando.CommandText = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id from POKEMONS P,ELEMENTOS E,ELEMENTOS D WHERE E.ID =P.IdTipo AND D.Id = P.IdDebilidad And p.activo=1";
@@ -35,7 +35,7 @@ namespace negocio
                 {
                     Pokemon aux = new Pokemon();
 
-                   
+
                     aux.Id = (int)lector["Id"];
                     aux.Numero = (int)lector["Numero"];
                     aux.Nombre = (string)lector["Nombre"];
@@ -130,29 +130,67 @@ namespace negocio
 
 
         public void agregar(Pokemon nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+
+            try
             {
-                AccesoDatos datos = new AccesoDatos();
-             
-                try
-                {
-                    datos.setearConsulta($"insert into POKEMONS(Numero,Nombre,Descripcion,Activo,IdTipo,IdDebilidad,UrlImagen) values({nuevo.Numero},'{nuevo.Nombre}','{nuevo.Descripcion}',1,@IdTipo,@IdDebilidad,@UrlImagen)");
-                     datos.seteraParametro("@IdTipo", nuevo.Tipo.Id);
-                     datos.seteraParametro("@IdDebilidad", nuevo.Debilidad.Id);
-                    datos.seteraParametro("@UrlImagen", nuevo.urlImagen);
-                    datos.ejecutarAccion();
-
-                }
-                catch (Exception ex)
-                {
-
-                    throw ex;
-                }
-                finally
-                {
-                    datos.cerrarConexion();
-                }
+                datos.setearConsulta($"insert into POKEMONS(Numero,Nombre,Descripcion,Activo,IdTipo,IdDebilidad,UrlImagen) values({nuevo.Numero},'{nuevo.Nombre}','{nuevo.Descripcion}',1,@IdTipo,@IdDebilidad,@UrlImagen)");
+                datos.seteraParametro("@IdTipo", nuevo.Tipo.Id);
+                datos.seteraParametro("@IdDebilidad", nuevo.Debilidad.Id);
+                datos.seteraParametro("@UrlImagen", nuevo.urlImagen);
+                datos.ejecutarAccion();
 
             }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
+        public void agregarConSp(Pokemon nuevo)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            /*
+                             * @numero int,
+                @nombre varchar(50),
+                @desc varchar(50),
+                @img varchar(300),
+                @idTipo int,
+                @idDebilidad int,
+                @idEvolucion int
+                as*/
+            try
+            {
+                datos.setearProcedimiento("storeAltaPokemon");
+                datos.seteraParametro("@numero", nuevo.Numero);
+                datos.seteraParametro("@nombre", nuevo.Nombre);
+                datos.seteraParametro("@desc", nuevo.Descripcion);
+
+                datos.seteraParametro("@img", nuevo.urlImagen);
+                datos.seteraParametro("@idTipo", nuevo.Tipo.Id);
+                datos.seteraParametro("@idDebilidad", nuevo.Debilidad.Id);
+
+                //datos.seteraParametro("@idEvolucion", null);
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+
+        }
 
         public void modificar(Pokemon poke)
         {
@@ -160,13 +198,13 @@ namespace negocio
             try
             {
                 datos.setearConsulta("update POKEMONS set Numero=@numero, Nombre=@nombre, Descripcion=@descripcion, UrlImagen=@urlImagen, IdTipo=@idTipo, IdDebilidad=@idDebilidad where  Id=@Id");
-                datos.seteraParametro("@numero",poke.Numero);
-                datos.seteraParametro("@nombre",poke.Nombre );
-                datos.seteraParametro("@descripcion",poke.Descripcion );
-                datos.seteraParametro("@urlImagen",poke.urlImagen );
-                datos.seteraParametro("@idTipo",poke.Tipo.Id );
-                datos.seteraParametro("@idDebilidad",poke.Debilidad.Id );
-                datos.seteraParametro("@Id",poke.Id );
+                datos.seteraParametro("@numero", poke.Numero);
+                datos.seteraParametro("@nombre", poke.Nombre);
+                datos.seteraParametro("@descripcion", poke.Descripcion);
+                datos.seteraParametro("@urlImagen", poke.urlImagen);
+                datos.seteraParametro("@idTipo", poke.Tipo.Id);
+                datos.seteraParametro("@idDebilidad", poke.Debilidad.Id);
+                datos.seteraParametro("@Id", poke.Id);
 
                 datos.ejecutarAccion();
 
@@ -182,11 +220,11 @@ namespace negocio
             }
         }
 
-      
+
 
         public void eliminar(int id)
         {
-                AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("delete from POKEMONS where id=@id");
@@ -203,7 +241,7 @@ namespace negocio
 
         public void eliminarLogico(int id)
         {
-                AccesoDatos datos = new AccesoDatos();
+            AccesoDatos datos = new AccesoDatos();
             try
             {
                 datos.setearConsulta("update POKEMONS set Activo=0 where id=@id");
@@ -214,7 +252,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw ex; 
+                throw ex;
             }
         }
         public List<Pokemon> filtrar(string campo, string criterio, string filtro)

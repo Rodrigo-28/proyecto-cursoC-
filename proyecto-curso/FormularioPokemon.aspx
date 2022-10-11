@@ -3,6 +3,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+        <br />
     <div class="row">
         <div class="col-6">
 
@@ -13,18 +14,15 @@
 
             <div class="mb-3">
                 <label for="txtNombre" class="form-label">Nombre: </label>
-                <asp:TextBox runat="server" ID="TextNombre" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="TxtNombre" CssClass="form-control" />
             </div>
 
             <div class="mb-3">
                 <label for="txtNumero" class="form-label">Numero: </label>
-                <asp:TextBox runat="server" ID="TextNumero" CssClass="form-control" />
+                <asp:TextBox runat="server" ID="TxtNumero" CssClass="form-control" />
             </div>
 
-            <div class="mb-3">
-                <label for="txtDescripcion" class="form-label">Descripcion: </label>
-                <asp:TextBox runat="server" TextMode="MultiLine" ID="TextDescripcion" CssClass="form-control" />
-            </div>
+
 
             <div class="mb-3">
                 <label for="ddlTipo" class="form-label">Tipo: </label>
@@ -41,6 +39,26 @@
                 <a href="PokemonLista.aspx">Cancelar</a>
             </div>
 
+        </div>
+        <div class="col-6">
+            <div class="mb-3">
+                <label for="txtDescripcion" class="form-label">Descripcion: </label>
+                <asp:TextBox runat="server" TextMode="MultiLine" ID="TxtDescripcion" CssClass="form-control" />
+            </div>
+            
+            <asp:ScriptManager runat="server" />
+            <asp:UpdatePanel runat="server" ID="UpdatePanel1">
+                <ContentTemplate>
+                    <div class="mb-3">
+                        <label for="textImagenUrl" class="form-label">Url Imagen</label>
+                        <asp:TextBox runat="server" ID="txtImagenUrl" CssClass="form-control"
+                            AutoPostBack="true" OnTextChanged="txtImagenUrl_TextChanged" />
+                    </div>
+                    <asp:Image ImageUrl="https://www.ceidra.org.py/img/imagennd.png" runat="server"
+                        ID="imgPokemon" Width="60%" />
+
+                </ContentTemplate>
+            </asp:UpdatePanel>
         </div>
 
     </div>
