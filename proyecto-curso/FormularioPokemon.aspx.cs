@@ -33,11 +33,22 @@ namespace proyecto_curso
                 }
                 //configuracion si estamos modificando.. voy a la basade de dato
                 string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
-                if(id != "")
+                if(id != "" && !IsPostBack)
                 {
                     PokemonService service = new PokemonService();
-                    List<Pokemon> lista = service.listar(id);
-                    Pokemon seleccionado = lista[0];
+                    // List<Pokemon> lista = service.listar(id);
+                    //Pokemon seleccionado = lista[0];
+                    Pokemon seleccionado = (service.listar(id))[0];
+                    //pre cargar todos los campos..
+                    txtId.Text = id;
+                    TxtNombre.Text = seleccionado.Nombre;
+                    TxtDescripcion.Text = seleccionado.Descripcion;
+                    txtImagenUrl.Text = seleccionado.urlImagen;
+                    TxtNumero.Text = seleccionado.Numero.ToString();
+
+                    ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
+                    ddlDebilidad.SelectedValue = seleccionado.Debilidad.Id.ToString();
+                    txtImagenUrl_TextChanged(sender, e);
                 }
 
             }
@@ -65,8 +76,19 @@ namespace proyecto_curso
                 nuevo.Tipo.Id = int.Parse(ddlTipo.SelectedValue);
                 nuevo.Debilidad = new Elemento();
                 nuevo.Debilidad.Id = int.Parse(ddlDebilidad.SelectedValue);
-
+                    
+                if(Request.QueryString["id"] != null)
+                {
+                    // no cargaba x q el obj no tenia el id...
+                    nuevo.Id = int.Parse(txtId.Text);
+                    service.modificarSp(nuevo);
+                }
+                else
+                {
                 service.agregarConSp(nuevo);
+
+                }
+
                 Response.Redirect("PokemonLista.aspx",false);
             }
             catch (Exception ex)
@@ -81,5 +103,7 @@ namespace proyecto_curso
         {
             imgPokemon.ImageUrl = txtImagenUrl.Text;
         }
+
+        
     }
 }

@@ -17,6 +17,7 @@ namespace negocio
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
 
+            // refactorizar este metodo y hacer un listar donde guarde un solo obj.. no una lista
 
             try
             {
@@ -131,6 +132,7 @@ namespace negocio
 
         }
 
+        
 
         public void agregar(Pokemon nuevo)
         {
@@ -216,7 +218,33 @@ namespace negocio
         }
 
 
+        public void modificarSp(Pokemon poke)
+        {
+            AccesoDatos datos = new AccesoDatos();
+            try
+            {
+                datos.setearProcedimiento("storeModificarPokemon");
+                datos.seteraParametro("@numero", poke.Numero);
+                datos.seteraParametro("@nombre", poke.Nombre);
+                datos.seteraParametro("@desc", poke.Descripcion);
+                datos.seteraParametro("@img", poke.urlImagen);
+                datos.seteraParametro("@idTipo", poke.Tipo.Id);
+                datos.seteraParametro("@idDebilidad", poke.Debilidad.Id);
+                datos.seteraParametro("@Id", poke.Id);
 
+                datos.ejecutarAccion();
+
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void eliminar(int id)
         {
             AccesoDatos datos = new AccesoDatos();
@@ -358,6 +386,8 @@ namespace negocio
         }
 
     }
-
+ 
 }
+
+
 
