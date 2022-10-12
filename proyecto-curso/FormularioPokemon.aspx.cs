@@ -16,6 +16,7 @@ namespace proyecto_curso
             txtId.Enabled = false;
             try
             {
+                //configuracion inicial de la pantalla
                 if (!IsPostBack)
                 {
                     ElementoNegocio negocio = new ElementoNegocio();
@@ -29,6 +30,14 @@ namespace proyecto_curso
                     ddlDebilidad.DataValueField = "id";
                     ddlDebilidad.DataTextField = "Descripcion";
                     ddlDebilidad.DataBind();
+                }
+                //configuracion si estamos modificando.. voy a la basade de dato
+                string id = Request.QueryString["id"] != null ? Request.QueryString["id"].ToString() : "";
+                if(id != "")
+                {
+                    PokemonService service = new PokemonService();
+                    List<Pokemon> lista = service.listar(id);
+                    Pokemon seleccionado = lista[0];
                 }
 
             }

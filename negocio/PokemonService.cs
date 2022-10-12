@@ -10,7 +10,7 @@ namespace negocio
 {
     public class PokemonService
     {
-        public List<Pokemon> listar()
+        public List<Pokemon> listar(string id="")
         {
             List<Pokemon> lista = new List<Pokemon>();
             SqlConnection conexion = new SqlConnection();
@@ -23,17 +23,20 @@ namespace negocio
 
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id from POKEMONS P,ELEMENTOS E,ELEMENTOS D WHERE E.ID =P.IdTipo AND D.Id = P.IdDebilidad And p.activo=1";
-
+                comando.CommandText = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id from POKEMONS P,ELEMENTOS E,ELEMENTOS D WHERE E.ID =P.IdTipo AND D.Id = P.IdDebilidad And p.activo=1 ";
+                if (id != "")
+                {
+                    comando.CommandText += " and P.Id = " + id;
+                };
                 comando.Connection = conexion;
 
                 conexion.Open();
                 lector = comando.ExecuteReader();
 
                 while (lector.Read())
-
                 {
                     Pokemon aux = new Pokemon();
+
 
 
                     aux.Id = (int)lector["Id"];
@@ -156,15 +159,7 @@ namespace negocio
         public void agregarConSp(Pokemon nuevo)
         {
             AccesoDatos datos = new AccesoDatos();
-            /*
-                             * @numero int,
-                @nombre varchar(50),
-                @desc varchar(50),
-                @img varchar(300),
-                @idTipo int,
-                @idDebilidad int,
-                @idEvolucion int
-                as*/
+          
             try
             {
                 datos.setearProcedimiento("storeAltaPokemon");
