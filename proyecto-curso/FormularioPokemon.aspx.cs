@@ -11,9 +11,11 @@ namespace proyecto_curso
 {
     public partial class FormularioPokemon : System.Web.UI.Page
     {
+        public bool ConfirmaEliminacion { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
             txtId.Enabled = false;
+            ConfirmaEliminacion = false;
             try
             {
                 //configuracion inicial de la pantalla
@@ -79,7 +81,7 @@ namespace proyecto_curso
                     
                 if(Request.QueryString["id"] != null)
                 {
-                    // no cargaba x q el obj no tenia el id...
+                    // le tengo q mandar el id con el nuevo obj
                     nuevo.Id = int.Parse(txtId.Text);
                     service.modificarSp(nuevo);
                 }
@@ -104,6 +106,45 @@ namespace proyecto_curso
             imgPokemon.ImageUrl = txtImagenUrl.Text;
         }
 
-        
+        protected void btnEliminar_Click(object sender, EventArgs e)
+        {
+            ConfirmaEliminacion = true;
+        }
+
+        protected void btnConfirmarEliminar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (chkConfirmarEliminacion.Checked)
+                {
+                    //prueba
+                    //falta armar el strore Procedures
+                    PokemonService service = new PokemonService();
+                    service.eliminar(int.Parse(txtId.Text));
+                    Response.Redirect("PokemonLista.aspx");
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Session.Add("error", ex);
+            }
+        }
+
+        protected void btnInactivar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                PokemonService service = new PokemonService();
+                service.eliminarLogico(int.Parse(txtId.Text));
+                Response.Redirect("PokemonLista.aspx");
+
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

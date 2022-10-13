@@ -3,8 +3,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <br />
+    <br />
     <div class="row">
+        <asp:ScriptManager runat="server" />
+
         <div class="col-6">
 
             <div class="mb-3">
@@ -36,17 +38,16 @@
 
             <div class="mb-3">
                 <asp:Button Text="Aceptar" ID="btnAceptar" CssClass="btn btn-primary" runat="server" OnClick="btnAceptar_Click" />
+                <asp:Button Text="inactivar" ID="btnInactivar" OnClick="btnInactivar_Click" runat="server" CssClass="btn btn-warning" />
                 <a href="PokemonLista.aspx">Cancelar</a>
             </div>
-
         </div>
         <div class="col-6">
             <div class="mb-3">
                 <label for="txtDescripcion" class="form-label">Descripcion: </label>
                 <asp:TextBox runat="server" TextMode="MultiLine" ID="TxtDescripcion" CssClass="form-control" />
             </div>
-            
-            <asp:ScriptManager runat="server" />
+
             <asp:UpdatePanel runat="server" ID="UpdatePanel1">
                 <ContentTemplate>
                     <div class="mb-3">
@@ -57,6 +58,29 @@
                     <asp:Image ImageUrl="https://www.ceidra.org.py/img/imagennd.png" runat="server"
                         ID="imgPokemon" Width="60%" />
 
+                </ContentTemplate>
+            </asp:UpdatePanel>
+        </div>
+    </div>
+
+
+
+
+    <div class="row">
+        <div class="col-6">
+            <asp:UpdatePanel runat="server">
+                <ContentTemplate>
+
+                    <div class="mb-3">
+                        <asp:Button Text="Elimniar" ID="btnEliminar" CssClass="btn btn-danger" runat="server" OnClick="btnEliminar_Click" />
+                    </div>
+                    <%if (ConfirmaEliminacion)
+                        {%>
+                    <div class="mb-3">
+                        <asp:CheckBox Text="Confirmar eliminacion" ID="chkConfirmarEliminacion" runat="server" />
+                        <asp:Button Text="Eliminar" ID="btnConfirmarEliminar" CssClass="btn btn-outline-danger" runat="server" OnClick="btnConfirmarEliminar_Click"/>
+                    </div>
+                    <%} %>
                 </ContentTemplate>
             </asp:UpdatePanel>
         </div>

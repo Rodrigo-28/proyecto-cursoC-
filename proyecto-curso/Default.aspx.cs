@@ -36,7 +36,6 @@ namespace proyecto_curso
         {
             int valor = int.Parse(((Button)sender).CommandArgument);
             List<Pokemon> aux = new List<Pokemon>();
-            //aux= ListaPokemon.Find(x => x.Id == valor);
 
         }
     }
