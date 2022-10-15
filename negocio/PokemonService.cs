@@ -24,7 +24,7 @@ namespace negocio
 
                 conexion.ConnectionString = "server=.\\SQLEXPRESS; database=POKEDEX_DB; integrated security=true";
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id from POKEMONS P,ELEMENTOS E,ELEMENTOS D WHERE E.ID =P.IdTipo AND D.Id = P.IdDebilidad And p.activo=1 ";
+                comando.CommandText = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id,P.Activo from POKEMONS P,ELEMENTOS E,ELEMENTOS D WHERE E.ID =P.IdTipo AND D.Id = P.IdDebilidad ";
                 if (id != "")
                 {
                     comando.CommandText += " and P.Id = " + id;
@@ -55,6 +55,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)lector["DEBILIDAD"].ToString();
+                    aux.Activo=bool.Parse(lector["Activo"].ToString());
 
                     lista.Add(aux);
 
@@ -263,13 +264,14 @@ namespace negocio
             }
         }
 
-        public void eliminarLogico(int id)
+        public void eliminarLogico(int id, bool activo=false) 
         {
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                datos.setearConsulta("update POKEMONS set Activo=0 where id=@id");
+                datos.setearConsulta("update POKEMONS set Activo=@activo where id=@id");
                 datos.seteraParametro("@id", id);
+                datos.seteraParametro("@activo", activo);
                 datos.ejecutarAccion();
 
             }
@@ -279,13 +281,13 @@ namespace negocio
                 throw ex;
             }
         }
-        public List<Pokemon> filtrar(string campo, string criterio, string filtro)
+        public List<Pokemon> filtrar(string campo, string criterio, string filtro,string estado)
         {
             List<Pokemon> lista = new List<Pokemon>();
             AccesoDatos datos = new AccesoDatos();
             try
             {
-                string consulta = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id from POKEMONS P, ELEMENTOS E,ELEMENTOS D WHERE E.ID = P.IdTipo AND D.Id = P.IdDebilidad And p.activo = 1 And ";
+                string consulta = "select Numero,Nombre,P.Descripcion, UrlImagen,E.Descripcion AS TIPO,D.Descripcion AS DEBILIDAD,P.IdTipo,P.IdDebilidad, P.Id,P.activo from POKEMONS P, ELEMENTOS E,ELEMENTOS D WHERE E.ID = P.IdTipo AND D.Id = P.IdDebilidad  And ";
 
                 if (campo == "Numero")
                 {
@@ -329,17 +331,24 @@ namespace negocio
                     switch (criterio)
                     {
                         case "Comienza con":
-                            consulta += $"P.descripcion like '{filtro}%'";
+                            consulta += $"E.descripcion like '{filtro}%'";
                             break;
                         case "Termina con":
-                            consulta += $"P.descripcion like '%{filtro}'";
+                            consulta += $"E.descripcion like '%{filtro}'";
                             break;
 
                         default:
-                            consulta += $"P.descripcion like '%{filtro}%'";
+                            consulta += $"E.descripcion like '%{filtro}%'";
                             break;
                     }
 
+                }
+                if(estado == "Activo")
+                {
+                    consulta += " and P.activo=1";
+                }else if(estado == "Inactivo")
+                {
+                    consulta += " and P.activo=0";
                 }
 
                 datos.setearConsulta(consulta);
@@ -367,6 +376,7 @@ namespace negocio
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.Id = (int)datos.Lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)datos.Lector["DEBILIDAD"].ToString();
+                    aux.Activo = bool.Parse(datos.Lector["Activo"].ToString());
 
                     lista.Add(aux);
 

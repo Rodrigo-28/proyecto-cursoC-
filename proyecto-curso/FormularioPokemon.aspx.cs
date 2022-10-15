@@ -41,6 +41,8 @@ namespace proyecto_curso
                     // List<Pokemon> lista = service.listar(id);
                     //Pokemon seleccionado = lista[0];
                     Pokemon seleccionado = (service.listar(id))[0];
+                    //guardo obj seleccionado  en la session
+                    Session.Add("pokeSeleccionado", seleccionado);
                     //pre cargar todos los campos..
                     txtId.Text = id;
                     TxtNombre.Text = seleccionado.Nombre;
@@ -51,6 +53,12 @@ namespace proyecto_curso
                     ddlTipo.SelectedValue = seleccionado.Tipo.Id.ToString();
                     ddlDebilidad.SelectedValue = seleccionado.Debilidad.Id.ToString();
                     txtImagenUrl_TextChanged(sender, e);
+
+                    //configuraciones acciones
+                    if (!seleccionado.Activo)
+                    {
+                        btnInactivar.Text = "Reactivar";
+                    }
                 }
 
             }
@@ -136,7 +144,10 @@ namespace proyecto_curso
             try
             {
                 PokemonService service = new PokemonService();
-                service.eliminarLogico(int.Parse(txtId.Text));
+                Pokemon seleccionado = (Pokemon)Session["pokeSeleccionado"];
+                // si no niego la condiccion de (seleccionado.activo) le voy a mandar el mismo estado del obj
+                // negando le mando el estatado opuesto al q trae
+                service.eliminarLogico(seleccionado.Id, !(seleccionado.Activo));
                 Response.Redirect("PokemonLista.aspx");
 
             }
