@@ -1,4 +1,5 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Master.Master" AutoEventWireup="true" CodeBehind="MenuLogin.aspx.cs" Inherits="proyecto_curso.MenuLogin" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -12,9 +13,12 @@
 
         </div>
         <div class="col-4">
+               
+            <%if (UsuarioIsAdmin()) { %>
+               
             <asp:Button Text="pagina 2" ID="btnpagina2" OnClick="btnpagina2_Click" CssClass="btn btn-primary" runat="server" />
             <p>tenes q ser admin</p>
-        </div>
-
+            </div>
+         <%} %>
     </div>
 </asp:Content>

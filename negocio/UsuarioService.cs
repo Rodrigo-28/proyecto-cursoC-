@@ -14,9 +14,10 @@ namespace negocio
             AccesoDatos2 datos = new AccesoDatos2();
             try
             {
-                datos.setearQuery("select id, TipoUser from USUARIO where usuario=@user AND pass=@pass");
+                datos.setearQuery("select Id, TipoUser from USUARIOS where usuario=@user AND pass=@pass");
                 datos.agregarParametro("@user", usuario.User);
                 datos.agregarParametro("@pass", usuario.Pass);
+                datos.ejecutarLector();
                 while (datos.Lector.Read())
                 {
                     usuario.Id = (int)datos.Lector["Id"];
@@ -29,7 +30,7 @@ namespace negocio
             catch (Exception ex)
             {
 
-                throw;
+                throw ex;
             }
             finally
             {

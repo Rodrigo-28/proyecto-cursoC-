@@ -39,7 +39,7 @@ namespace proyecto_curso
             {
                 Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx",false);
-                throw;
+                
             }
         }
     }

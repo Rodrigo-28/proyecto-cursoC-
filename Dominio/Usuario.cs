@@ -15,9 +15,9 @@ namespace Dominio
     {
         public Usuario (string user,string pass, bool admin)
         {
-            this.User = user;
-            this.Pass = pass;
-            this.TipoUsuarios = admin ? TipoUsuarios.ADMIN : TipoUsuarios.NORMAL;
+            User = user;
+           Pass = pass;
+            TipoUsuarios = admin ? TipoUsuarios.ADMIN : TipoUsuarios.NORMAL;
         }
         public int Id { get; set; }
         public string User { get; set; }
