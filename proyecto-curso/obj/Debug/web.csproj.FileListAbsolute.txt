@@ -61,3 +61,5 @@ C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\proyecto-curso\obj\Deb
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\proyecto-curso\obj\Debug\web.csproj.CopyComplete
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\proyecto-curso\obj\Debug\proyecto-curso.dll
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\proyecto-curso\obj\Debug\proyecto-curso.pdb
+C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\proyecto-curso\bin\acceso-datos.dll
+C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\proyecto-curso\bin\acceso-datos.pdb

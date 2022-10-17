@@ -16,3 +16,5 @@ C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\negocio\obj\Debug\nego
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\negocio\obj\Debug\negocio.csproj.CopyComplete
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\negocio\obj\Debug\negocio.dll
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\negocio\obj\Debug\negocio.pdb
+C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\negocio\bin\Debug\acceso-datos.dll
+C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\negocio\bin\Debug\acceso-datos.pdb

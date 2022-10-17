@@ -10,3 +10,6 @@ C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\Dominio\obj\Debug\Domi
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\Dominio\obj\Debug\Dominio.dll
 C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\Dominio\obj\Debug\Dominio.pdb
+C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\Dominio\bin\Debug\acceso-datos.dll
+C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\Dominio\bin\Debug\acceso-datos.pdb
+C:\Users\rodri\Desktop\c#nivel3\repositorio2\proyecto-web\Dominio\obj\Debug\Dominio.csproj.CopyComplete

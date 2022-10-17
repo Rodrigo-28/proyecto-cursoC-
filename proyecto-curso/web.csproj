@@ -69,8 +69,13 @@
   <ItemGroup>
     <Content Include="Default.aspx" />
     <Content Include="detallePokemon.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="FormularioPokemon.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Login1.aspx" />
+    <Content Include="MenuLogin.aspx" />
+    <Content Include="pagina1Login.aspx" />
+    <Content Include="pagina2LoginAdmin.aspx" />
     <Content Include="PokemonLista.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -89,6 +94,13 @@
     <Compile Include="detallePokemon.aspx.designer.cs">
       <DependentUpon>detallePokemon.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
     <Compile Include="FormularioPokemon.aspx.cs">
       <DependentUpon>FormularioPokemon.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -99,12 +111,40 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Login1.aspx.cs">
+      <DependentUpon>Login1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login1.aspx.designer.cs">
+      <DependentUpon>Login1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Master.Master.cs">
       <DependentUpon>Master.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Master.Master.designer.cs">
       <DependentUpon>Master.Master</DependentUpon>
+    </Compile>
+    <Compile Include="MenuLogin.aspx.cs">
+      <DependentUpon>MenuLogin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MenuLogin.aspx.designer.cs">
+      <DependentUpon>MenuLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pagina1Login.aspx.cs">
+      <DependentUpon>pagina1Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pagina1Login.aspx.designer.cs">
+      <DependentUpon>pagina1Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="pagina2LoginAdmin.aspx.cs">
+      <DependentUpon>pagina2LoginAdmin.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="pagina2LoginAdmin.aspx.designer.cs">
+      <DependentUpon>pagina2LoginAdmin.aspx</DependentUpon>
     </Compile>
     <Compile Include="PokemonLista.aspx.cs">
       <DependentUpon>PokemonLista.aspx</DependentUpon>
@@ -130,6 +170,10 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\acceso-datos\acceso_datos.csproj">
+      <Project>{e8aed8c6-6f35-4566-af96-79560572858a}</Project>
+      <Name>acceso_datos</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Dominio\Dominio.csproj">
       <Project>{157f53c8-5d41-4231-acbd-e96aafd949e1}</Project>
       <Name>Dominio</Name>

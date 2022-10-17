@@ -44,6 +44,13 @@
     <Compile Include="Elemento.cs" />
     <Compile Include="Pokemon.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Usuario.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\acceso-datos\acceso_datos.csproj">
+      <Project>{e8aed8c6-6f35-4566-af96-79560572858a}</Project>
+      <Name>acceso_datos</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

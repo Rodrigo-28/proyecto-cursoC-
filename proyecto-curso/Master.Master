@@ -21,6 +21,7 @@
                     <div class="navbar-nav">
                         <a class="nav-link active" aria-current="page" href="/">Home</a>
                         <a class="nav-link" href="pokemonLista.aspx">Lista pokemon</a>
+                        <a class="nav-link" href="Login1.aspx">Login  </a>
                     </div>
                 </div>
             </div>
