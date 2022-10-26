@@ -22,10 +22,14 @@ namespace proyecto_curso
             {
                 Trainee user = new Trainee();
                 traineeService traineeNuevo = new traineeService();
+                EmailService emailService = new EmailService();
                 user.Email = txtEmail.Text;
                 user.Pass = TxtPassword.Text;
-                int id = traineeNuevo.insertarNuevo(user);
-
+                user.Id = traineeNuevo.insertarNuevo(user);
+                Session.Add("trainee", user);
+                emailService.armarCorreo(txtEmail.Text, "bienvenida trainee", "hola te damos la bienvenida a la app");
+                emailService.enviarEmail();
+                Response.Redirect("Default.aspx", false);
 
 
             }

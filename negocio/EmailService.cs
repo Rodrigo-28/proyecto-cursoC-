@@ -16,10 +16,10 @@ namespace negocio
         public EmailService()
         {
             server = new SmtpClient();
-            server.Credentials = new NetworkCredential("rodrigoromano2019@gmail.com", "38183933rodrigo");
+            server.Credentials = new NetworkCredential("16dcd0fae6b973", "ea9a1e8f3d0e23");
             server.EnableSsl = true;
-            server.Port = 587;
-            server.Host = "smtp.gmail.com";
+            server.Port = 2525;
+            server.Host = "smtp.mailtrap.io";
         }
         public void armarCorreo(string emailDestino,string asunto, string cuerpo)
         {
@@ -28,8 +28,8 @@ namespace negocio
             email.To.Add(emailDestino);
             email.Subject = asunto;
             email.IsBodyHtml = true;
-            email.Body = "<h1>Reporte de materias a las q se ha inscripto</h1><br>hola, te inscribiste...";
-
+            //  email.Body = "<h1>Reporte de materias a las q se ha inscripto</h1><br>hola, te inscribiste...";
+            email.Body = cuerpo;
         }
         public void enviarEmail()
         {

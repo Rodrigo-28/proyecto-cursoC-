@@ -71,11 +71,13 @@
     <Content Include="detallePokemon.aspx" />
     <Content Include="EnviosEmail.aspx" />
     <Content Include="Error.aspx" />
+    <Content Include="Favorito.aspx" />
     <Content Include="FormularioPokemon.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Login.aspx" />
     <Content Include="Login1.aspx" />
     <Content Include="MenuLogin.aspx" />
+    <Content Include="MiPerfil.aspx" />
     <Content Include="pagina1Login.aspx" />
     <Content Include="pagina2LoginAdmin.aspx" />
     <Content Include="PokemonLista.aspx" />
@@ -110,6 +112,13 @@
     </Compile>
     <Compile Include="Error.aspx.designer.cs">
       <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Favorito.aspx.cs">
+      <DependentUpon>Favorito.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Favorito.aspx.designer.cs">
+      <DependentUpon>Favorito.aspx</DependentUpon>
     </Compile>
     <Compile Include="FormularioPokemon.aspx.cs">
       <DependentUpon>FormularioPokemon.aspx</DependentUpon>
@@ -148,6 +157,13 @@
     </Compile>
     <Compile Include="MenuLogin.aspx.designer.cs">
       <DependentUpon>MenuLogin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MiPerfil.aspx.designer.cs">
+      <DependentUpon>MiPerfil.aspx</DependentUpon>
     </Compile>
     <Compile Include="pagina1Login.aspx.cs">
       <DependentUpon>pagina1Login.aspx</DependentUpon>
@@ -191,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

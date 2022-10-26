@@ -2,7 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>login
-
-    </h1>
+   <div class="row">
+        <div class="col-4">
+            <h2>Ingresa</h2>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <asp:TextBox runat="server" CssClass="form-control" ID="txtEmail" />
+            </div>
+               <div class="mb-3">
+                <label class="form-label">Password</label>
+                <asp:TextBox runat="server" CssClass="form-control" ID="TxtPassword" TextMode="Password" />
+            </div>
+            <asp:Button Text="Ingresar" CssClass="btn btn-primary" ID="btnLogin" OnClick="btnLogin_Click" runat="server" />
+            <a href="/">Cancelar</a>
+        </div>
+    </div>
 </asp:Content>
